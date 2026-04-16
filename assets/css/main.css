@@ -1750,12 +1750,13 @@ background: #ff6600;}
   }
 }
 
-/*--------------------------------------------------------------
-# Faq Section
---------------------------------------------------------------*/
+/* ==============================
+   FAQ Section (FIXED VERSION)
+============================== */
+
 .faq .content h3 {
   font-weight: 400;
-  font-size: 34px;
+  font-size: 30px;
 }
 
 .faq .content p {
@@ -1770,21 +1771,19 @@ background: #ff6600;}
   margin-bottom: 20px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  border-radius: 8px;
 }
 
-.faq .faq-container .faq-item:last-child {
-  margin-bottom: 0;
-}
-
+/* Title */
 .faq .faq-container .faq-item h3 {
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   margin: 0 30px 0 0;
-  transition: 0.3s;
   cursor: pointer;
   display: flex;
   align-items: flex-start;
+  transition: 0.3s;
 }
 
 .faq .faq-container .faq-item h3 .num {
@@ -1796,21 +1795,22 @@ background: #ff6600;}
   color: var(--accent-color);
 }
 
+/* CONTENT (CLEAN TOGGLE SYSTEM) */
 .faq .faq-container .faq-item .faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.faq .faq-container .faq-item .faq-content p {
-  margin-bottom: 0;
+  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
+  opacity: 0;
+  transition: all 0.4s ease;
 }
 
-.faq .faq-container .faq-item .faq-toggle {
+.faq .faq-container .faq-active .faq-content {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* TOGGLE ICON */
+.faq .faq-container .faq-toggle {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1820,19 +1820,13 @@ background: #ff6600;}
   cursor: pointer;
 }
 
-.faq .faq-container .faq-item .faq-toggle:hover {
+.faq .faq-container .faq-toggle:hover {
   color: var(--accent-color);
 }
 
+/* ACTIVE STATE */
 .faq .faq-container .faq-active h3 {
   color: var(--accent-color);
-}
-
-.faq .faq-container .faq-item:hover .faq-content {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  padding-top: 10px;
 }
 
 .faq .faq-container .faq-active .faq-toggle {
@@ -1896,28 +1890,52 @@ background: #ff6600;}
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   margin-bottom: 0;
 }
-
 /*--------------------------------------------------------------
-# Contact Section
---------------------------------------------------------------*/
-.contact .info-container {
-  background-color: var(--accent-color);
-  height: 100%;
-  padding: 20px;
+/* =========================
+   CONTACT SECTION FIX
+========================= */
+
+/* Ensure proper layout */
+.contact .row {
+  display: flex;
+  align-items: stretch;
 }
 
+/* Left & Right columns */
+.contact .col-lg-4,
+.contact .col-lg-8 {
+  display: flex;
+}
+
+/* =========================
+   LEFT SIDE (INFO PANEL)
+========================= */
+.contact .info-container {
+  background-color: var(--accent-color);
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Info cards */
 .contact .info-item {
   width: 100%;
   margin-bottom: 20px;
   padding: 20px;
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--contrast-color), transparent 90%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .contact .info-item:last-child {
   margin-bottom: 0;
 }
 
+/* Icons */
 .contact .info-item i {
   font-size: 20px;
   color: var(--contrast-color);
@@ -1927,24 +1945,9 @@ background: #ff6600;}
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
+  border-radius: 50%;
   margin-right: 15px;
-}
-
-.contact .info-item h3 {
-  color: var(--contrast-color);
-  font-size: 20px;
-  padding: 0;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.contact .info-item p {
-  padding: 0;
-  margin-bottom: 0;
-  font-size: 14px;
+  transition: 0.3s ease;
 }
 
 .contact .info-item:hover i {
@@ -1952,49 +1955,119 @@ background: #ff6600;}
   color: var(--accent-color);
 }
 
-.contact .php-email-form {
-  background-color: var(--surface-color);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100%;
+/* Text */
+.contact .info-item h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.contact .info-item p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* =========================
+   RIGHT SIDE (FORM PANEL)
+========================= */
+.contact .col-lg-8 {
+  background-color: #2c4a6e;
   padding: 30px;
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+/* Form */
+.contact #contact-form {
+  width: 100%;
+}
+
+/* Inputs */
+.contact #contact-form input,
+.contact #contact-form textarea {
+  width: 100%;
   font-size: 14px;
-  padding: 10px 15px;
-  box-shadow: none;
-  border-radius: 0;
-  color: var(--default-color);
-  background-color: var(--surface-color);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  padding: 12px 15px;
+  border-radius: 6px;
+
+  color: #fff;
+  background-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  outline: none;
+  transition: 0.3s;
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-  border-color: var(--accent-color);
+/* Focus state */
+.contact #contact-form input:focus,
+.contact #contact-form textarea:focus {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.08);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+/* Autofill FIX (🔥 IMPORTANT FIX for white issue) */
+.contact #contact-form input:-webkit-autofill,
+.contact #contact-form textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #2c4a6e inset !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
-.contact .php-email-form button[type=submit] {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 0;
+/* Placeholder */
+.contact #contact-form input::placeholder,
+.contact #contact-form textarea::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Button */
+.contact #contact-form button {
+  color: #2c4a6e;
+  background: #fff;
+  border: none;
   padding: 10px 30px;
-  transition: 0.4s;
   border-radius: 50px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+.contact #contact-form button:hover {
+  background: rgba(255,255,255,0.85);
+}
+
+/* =========================
+   TOAST MESSAGE
+========================= */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background: #fff;
+  color: #2c4a6e;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s;
+  z-index: 999;
+  font-size: 14px;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   BUTTON LOADING STATE
+========================= */
+button.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+button.loading::after {
+  content: " ⏳";
 }
 
 /*--------------------------------------------------------------

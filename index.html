@@ -706,94 +706,148 @@
 
    
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
+<!-- Contact Section -->
+<section id="contact" class="contact section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Let's bring your ideas to life! Contact me for design and virtual assistance needs.</p>
-      </div><!-- End Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Let's bring your ideas to life! Contact me for design and virtual assistance needs.</p>
+  </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gx-lg-0 gy-4">
 
-        <div class="row gx-lg-0 gy-4">
+      <!-- LEFT INFO -->
+      <div class="col-lg-4">
+        <div class="info-container d-flex flex-column align-items-center justify-content-center">
 
-          <div class="col-lg-4">
-            <div class="info-container d-flex flex-column align-items-center justify-content-center">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="100">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>Butuan City, Agusan Del Norte, Philippines</p>
-                </div>
-              </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bi bi-geo-alt flex-shrink-0"></i>
+            <div>
+              <h3>Address</h3>
+              <p>Butuan City, Agusan Del Norte, Philippines</p>
+            </div>
+          </div>
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="100">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Me</h3>
-                  <p>+639089979234</p>
-                </div>
-              </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bi bi-telephone flex-shrink-0"></i>
+            <div>
+              <h3>Call Me</h3>
+              <p>+639089979234</p>
+            </div>
+          </div>
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>rashagideon@gmail.com</p>
-                </div>
-              </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bi bi-envelope flex-shrink-0"></i>
+            <div>
+              <h3>Email Us</h3>
+              <p>rashagideon@gmail.com</p>
+            </div>
+          </div>
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="100">
-                <i class="bi bi-clock flex-shrink-0"></i>
-                <div>
-                  <h3>Open Hours:</h3>
-                  <p>Mon-Sat: 10PM - 8AM (PHT)</p>
-                </div>
-              </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bi bi-clock flex-shrink-0"></i>
+            <div>
+              <h3>Open Hours:</h3>
+              <p>Mon-Sat: 10PM - 8AM (PHT)</p>
+            </div>
+          </div>
 
+        </div>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="col-lg-8">
+
+        <form id="contact-form" action="https://formspree.io/f/xnjljygk" method="POST">
+
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+            </div>
+
+            <div class="col-md-12">
+              <textarea name="message" class="form-control" rows="8" placeholder="Message" required></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <button type="submit">Send Message</button>
             </div>
 
           </div>
+        </form>
 
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade" data-aos-delay="100">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="8" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
+        <div id="toast"></div>
 
       </div>
 
-    </section><!-- /Contact Section -->
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("contact-form");
+  const toast = document.getElementById("toast");
+  const button = form.querySelector("button");
+
+  function showToast(message, success = true) {
+    if (!toast) return;
+
+    toast.innerHTML = message;
+    toast.style.background = success ? "#fff" : "#ff4d4d";
+    toast.style.color = success ? "#2c4a6e" : "#fff";
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    button.disabled = true;
+    button.innerHTML = "Sending...";
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        showToast("Message sent successfully!", true);
+        form.reset();
+      } else {
+        showToast("Failed to send. Try again.", false);
+      }
+
+    } catch (error) {
+      showToast("Network error.", false);
+    }
+
+    button.disabled = false;
+    button.innerHTML = "Send Message";
+  });
+
+});
+</script>
 
   </main>
 
@@ -861,7 +915,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
