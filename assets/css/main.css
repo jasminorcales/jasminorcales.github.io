@@ -560,14 +560,23 @@ h6 {
 
   .mobile-nav-active .navmenu {
     position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 250px;
+    height: auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     overflow: hidden;
-    inset: 0;
-    background: rgba(33, 37, 41, 0.8);
-    transition: 0.3s;
   }
-
   .mobile-nav-active .navmenu>ul {
     display: block;
+    position: static;
+    padding: 0;
+  }
+  .mobile-nav-active .navmenu li {
+    padding: 10px 0;
   }
 }
 
@@ -1346,7 +1355,7 @@ section,
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   box-sizing: content-box;
   padding: 30px;
-  margin: 30px 15px;
+  margin: 10px 15px;
   position: relative;
   height: 100%;
 }
@@ -1414,15 +1423,13 @@ section,
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
-  opacity: 1;
+  width: 20px;
+  height: 4px;
+  border-radius: 10px;
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--accent-color);
-}
+background: #ff6600;}
 
 @media (max-width: 767px) {
   .testimonials .testimonial-wrap {
@@ -1800,6 +1807,7 @@ section,
 .faq .faq-container .faq-item .faq-content p {
   margin-bottom: 0;
   overflow: hidden;
+  transition: max-height 0.4s ease;
 }
 
 .faq .faq-container .faq-item .faq-toggle {
@@ -1820,7 +1828,7 @@ section,
   color: var(--accent-color);
 }
 
-.faq .faq-container .faq-active .faq-content {
+.faq .faq-container .faq-item:hover .faq-content {
   grid-template-rows: 1fr;
   visibility: visible;
   opacity: 1;
